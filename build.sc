@@ -7,13 +7,7 @@ import scalalib._
 // support BSP
 import mill.bsp._
 
-//https://github.com/chipsalliance/cde.gi
-object cdeHello extends cde.build.cde("2.13.10")  {
-  override def millSourcePath = os.pwd / "cde" / "cde"
-}
-
-//import publish._ //import PublishModule & PomSetting
-import $file.cde.build  //find cde/build.sc
+import $file.`rocket-chip`.build
 
 object chipv extends SbtModule { m =>
   override def millSourcePath = os.pwd
@@ -32,7 +26,11 @@ object chipv extends SbtModule { m =>
     ivy"edu.berkeley.cs:::chisel3-plugin:3.5.4",
   )
 
-  override def moduleDeps = super.moduleDeps ++ Seq(cdeHello)
+  override def moduleDeps = super.moduleDeps ++ Seq(
+    `rocket-chip`.build.cdeRocket,
+    `rocket-chip`.build.hardfloatRocket
+    // `rocket-chip`.build.rocketchip
+  )
 
   object test extends Tests with ScalaTest {
     override def ivyDeps = m.ivyDeps() ++ Agg(
