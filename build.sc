@@ -29,7 +29,7 @@ object chipv extends SbtModule { m =>
   override def moduleDeps = super.moduleDeps ++ Seq(
     `rocket-chip`.build.cdeRocket,
     `rocket-chip`.build.hardfloatRocket
-    // `rocket-chip`.build.rocketchip
+    `rocket-chip`.build.rocketchip
   )
 
   object test extends Tests with ScalaTest {
