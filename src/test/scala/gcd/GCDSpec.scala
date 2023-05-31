@@ -1,6 +1,6 @@
 // See README.md for license details.
 
-package gcd
+package chipv.gcd
 
 import chisel3._
 import chiseltest._
